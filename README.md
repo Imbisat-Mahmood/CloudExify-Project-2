@@ -44,9 +44,9 @@ CloudExify-Project-2/
 └── README.md
 ```
 
-**Live Vercel Link:** _(add after deploying)_
+**Live Vercel Link:** https://cloud-exify-project-2.vercel.app/
 
 ## Status
-- [ ] Deploy to Vercel
-- [ ] Take 2 screenshots (desktop + mobile)
-- [ ] Double-check stock values persist correctly across a page refresh
+- [x] Deploy to Vercel
+- [x] Take 2 screenshots (desktop + mobile)
+- [x] Double-check stock values persist correctly across a page refresh
