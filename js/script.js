@@ -373,6 +373,8 @@ function renderProducts(products) {
                          alt="${p.name} — KADET Streetwear" 
                          loading="lazy"
                          decoding="async"
+                         width="400"
+                         height="400"
                          onclick="openProductModal(${p.id})">
                     <div class="card-body">
                         <h6 class="card-title">${p.name}</h6>
@@ -395,6 +397,7 @@ function renderProducts(products) {
 
     productGrid.innerHTML = html;
 }
+                   
   
 
 // ========================================
