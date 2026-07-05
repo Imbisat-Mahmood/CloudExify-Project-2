@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
     <title>KADET — Premium Streetwear Since 2026</title>
+    <meta name="description" content="KADET premium streetwear for ages 10-18. Shop Signature Tops, Matching Sets &amp; Essential Bottoms. Limited drops, timeless style.">
+    <meta name="theme-color" content="#1A1A1A">
+    
+    <!-- Preconnect for faster loading -->
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts (preloaded) -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome 6 (Free) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <!-- Custom CSS -->
@@ -22,24 +32,24 @@
     <!-- ============================================ -->
     <!-- TOP BAR - Premium Announcement -->
     <!-- ============================================ -->
-    <div class="top-bar">
+    <div class="top-bar" role="banner" aria-label="Announcement bar">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <span class="top-bar-text">
-                        <i class="fas fa-truck-fast me-2"></i>
+                        <i class="fas fa-truck-fast me-2" aria-hidden="true"></i>
                         FREE SHIPPING ON ORDERS OVER Rs.5,000
                     </span>
                 </div>
                 <div class="col-md-6 text-end">
                     <div class="top-bar-links">
-                        <a href="#" class="top-bar-link" id="darkModeToggle">
-                            <i class="fas fa-moon me-1"></i> <span id="darkModeLabel">Dark</span>
-                        </a>
-                        <span class="divider">|</span>
-                        <a href="#" class="top-bar-link" data-bs-toggle="modal" data-bs-target="#cartModal">
-                            <i class="fas fa-shopping-bag me-1"></i> Cart (<span id="cartCount">0</span>)
-                        </a>
+                        <button class="top-bar-link" id="darkModeToggle" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon me-1" aria-hidden="true"></i> <span id="darkModeLabel">Dark</span>
+                        </button>
+                        <span class="divider" aria-hidden="true">|</span>
+                        <button class="top-bar-link" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="Open cart">
+                            <i class="fas fa-shopping-bag me-1" aria-hidden="true"></i> Cart (<span id="cartCount">0</span>)
+                        </button>
                     </div>
                 </div>
             </div>
@@ -49,15 +59,15 @@
     <!-- ============================================ -->
     <!-- NAVBAR -->
     <!-- ============================================ -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top" role="navigation" aria-label="Main navigation">
         <div class="container">
-            <a class="navbar-brand" href="#" id="homeLink">
-                <img src="assets/logo.png" alt="KADET" height="40" class="me-2">
+            <a class="navbar-brand" href="#" id="homeLink" aria-label="KADET Home">
+                <img src="assets/logo.png" alt="KADET" height="40" class="me-2" width="40" height="40">
                 <span class="brand-text">KADET</span>
                 <span class="brand-sub">STREETWEAR</span>
             </a>
             
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -70,196 +80,203 @@
                         <a class="nav-link" href="#drop">Drop</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#wishlistModal">
-                            <i class="far fa-heart"></i>
+                        <button class="nav-link position-relative btn btn-link" data-bs-toggle="modal" data-bs-target="#wishlistModal" aria-label="Open wishlist">
+                            <i class="far fa-heart" aria-hidden="true"></i>
                             <span class="badge bg-orange wishlist-badge" id="wishlistCount">0</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link position-relative" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
-                            <i class="fas fa-shopping-bag"></i>
+                        <button class="nav-link position-relative btn btn-link" data-bs-toggle="modal" data-bs-target="#cartModal" aria-label="Open cart">
+                            <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                             <span class="badge bg-orange cart-badge" id="navCartCount">0</span>
-                        </a>
+                        </button>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-   <!-- ============================================ -->
-<!-- HERO BANNER - AUTO SLIDING CAROUSEL (4 Slides) -->
-<!-- ============================================ -->
-<section class="hero-section">
-    <div class="container">
-        <div class="hero-slider">
-            
-            <!-- Slide 1 - Built Different -->
-            <div class="hero-slide active" data-slide="0">
-                <div class="row align-items-center min-vh-50">
-                    <div class="col-lg-6">
-                        <div class="hero-content">
-                            <span class="hero-badge">LIMITED DROP 2026</span>
-                            <h1 class="hero-title">
-                                Built Different. <br>
-                                <span class="highlight">Make It Stand Out.</span>
-                            </h1>
-                            <p class="hero-text">
-                                Premium streetwear for those who dare to be different. 
-                                Limited drops, timeless style.
-                            </p>
-                            <div class="hero-buttons">
-                                <a href="#products" class="btn btn-primary btn-lg">
-                                    Shop Now <i class="fas fa-arrow-right ms-2"></i>
-                                </a>
-                                <a href="#drop" class="btn btn-outline-light btn-lg ms-3">
-                                    View Drop
-                                </a>
-                            </div>
-                            <div class="hero-stats">
-                                <div class="stat-item">
-                                    <span class="stat-number">30+</span>
-                                    <span class="stat-label">Products</span>
+    <!-- ============================================ -->
+    <!-- HERO BANNER - AUTO SLIDING CAROUSEL -->
+    <!-- ============================================ -->
+    <section class="hero-section" aria-label="Hero banner">
+        <div class="container">
+            <div class="hero-slider" role="region" aria-label="Featured products">
+                
+                <!-- Slide 1 - Built Different -->
+                <div class="hero-slide active" data-slide="0" role="group" aria-label="Slide 1 of 4">
+                    <div class="row align-items-center min-vh-50">
+                        <div class="col-lg-6">
+                            <div class="hero-content">
+                                <span class="hero-badge">LIMITED DROP 2026</span>
+                                <h1 class="hero-title">
+                                    Built Different. <br>
+                                    <span class="highlight">Make It Stand Out.</span>
+                                </h1>
+                                <p class="hero-text">
+                                    Premium streetwear for those who dare to be different. 
+                                    Limited drops, timeless style.
+                                </p>
+                                <div class="hero-buttons">
+                                    <a href="#products" class="btn btn-primary btn-lg">
+                                        Shop Now <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#drop" class="btn btn-outline-light btn-lg ms-3">
+                                        View Drop
+                                    </a>
                                 </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">3</span>
-                                    <span class="stat-label">Categories</span>
+                                <div class="hero-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-number">39+</span>
+                                        <span class="stat-label">Products</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">3</span>
+                                        <span class="stat-label">Categories</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-number">⭐ 4.6</span>
+                                        <span class="stat-label">Avg Rating</span>
+                                    </div>
                                 </div>
-                                <div class="stat-item">
-                                    <span class="stat-number">⭐ 4.6</span>
-                                    <span class="stat-label">Avg Rating</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-wrapper">
+                                <img src="assets/banner-1.png" alt="KADET Built Different Collection" class="img-fluid hero-image" width="600" height="400" loading="lazy">
+                                <div class="hero-floating-badge">
+                                    <span class="badge bg-orange pulse">NEW DROP</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="hero-image-wrapper">
-                            <img src="assets/banner-1.png" alt="KADET Built Different" class="img-fluid hero-image">
-                            
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Slide 2 - Discover The Drop -->
-            <div class="hero-slide" data-slide="1">
-                <div class="row align-items-center min-vh-50">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="hero-content text-lg-end">
-                            <span class="hero-badge">DISCOVER</span>
-                            <h1 class="hero-title">
-                                The <br>
-                                <span class="highlight">Drop</span>
-                            </h1>
-                            <p class="hero-text ms-lg-auto">
-                                Exclusive limited edition pieces. Once they're gone, 
-                                they're gone forever. Be first.
-                            </p>
-                            <div class="hero-buttons justify-content-lg-end">
-                                <a href="#drop" class="btn btn-primary btn-lg">
-                                    View Drop <i class="fas fa-arrow-right ms-2"></i>
-                                </a>
+                <!-- Slide 2 - Discover The Drop -->
+                <div class="hero-slide" data-slide="1" role="group" aria-label="Slide 2 of 4">
+                    <div class="row align-items-center min-vh-50">
+                        <div class="col-lg-6 order-lg-2">
+                            <div class="hero-content text-lg-end">
+                                <span class="hero-badge">DISCOVER</span>
+                                <h1 class="hero-title">
+                                    The <br>
+                                    <span class="highlight">Drop</span>
+                                </h1>
+                                <p class="hero-text ms-lg-auto">
+                                    Exclusive limited edition pieces. Once they're gone, 
+                                    they're gone forever. Be first.
+                                </p>
+                                <div class="hero-buttons justify-content-lg-end">
+                                    <a href="#drop" class="btn btn-primary btn-lg">
+                                        View Drop <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="hero-image-wrapper">
+                                <img src="assets/banner-4.png" alt="KADET The Drop Collection" class="img-fluid hero-image" width="600" height="400" loading="lazy">
+                                <div class="hero-floating-badge">
+                                    <span class="badge bg-orange pulse">EXCLUSIVE</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="hero-image-wrapper">
-                            <img src="assets/banner-4.png" alt="KADET The Drop" class="img-fluid hero-image">
-                            
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Slide 3 - Co-Ord Collection -->
-            <div class="hero-slide" data-slide="2">
-                <div class="row align-items-center min-vh-50">
-                    <div class="col-lg-6">
-                        <div class="hero-content">
-                            <span class="hero-badge">CO-ORD COLLECTION</span>
-                            <h1 class="hero-title">
-                                Perfect Match <br>
-                                <span class="highlight">Elevated Style</span>
-                            </h1>
-                            <p class="hero-text">
-                                Premium matching sets for the modern wardrobe. 
-                                Designed to impress, built for comfort.
-                            </p>
-                            <div class="hero-buttons">
-                                <a href="#products" class="btn btn-primary btn-lg" onclick="filterCategory('Matching Sets')">
-                                    Explore Sets <i class="fas fa-arrow-right ms-2"></i>
-                                </a>
+                <!-- Slide 3 - Co-Ord Collection -->
+                <div class="hero-slide" data-slide="2" role="group" aria-label="Slide 3 of 4">
+                    <div class="row align-items-center min-vh-50">
+                        <div class="col-lg-6">
+                            <div class="hero-content">
+                                <span class="hero-badge">CO-ORD COLLECTION</span>
+                                <h1 class="hero-title">
+                                    Perfect Match <br>
+                                    <span class="highlight">Elevated Style</span>
+                                </h1>
+                                <p class="hero-text">
+                                    Premium matching sets for the modern wardrobe. 
+                                    Designed to impress, built for comfort.
+                                </p>
+                                <div class="hero-buttons">
+                                    <a href="#products" class="btn btn-primary btn-lg" onclick="filterCategory('Matching Sets')">
+                                        Explore Sets <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="hero-image-wrapper">
+                                <img src="assets/banner-2.png" alt="KADET Co-Ord Sets Collection" class="img-fluid hero-image" width="600" height="400" loading="lazy">
+                                <div class="hero-floating-badge">
+                                    <span class="badge bg-orange pulse">BEST SELLER</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
-                        <div class="hero-image-wrapper">
-                            <img src="assets/banner-3.png" alt="KADET Co-Ord Sets" class="img-fluid hero-image">
-                           
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Slide 4 - Essential Bottoms -->
-            <div class="hero-slide" data-slide="3">
-                <div class="row align-items-center min-vh-50">
-                    <div class="col-lg-6 order-lg-2">
-                        <div class="hero-content text-lg-end">
-                            <span class="hero-badge">ESSENTIAL BOTTOMS</span>
-                            <h1 class="hero-title">
-                                Style From <br>
-                                <span class="highlight">The Ground Up</span>
-                            </h1>
-                            <p class="hero-text ms-lg-auto">
-                                Premium bottoms for every occasion. From cargo to denim, 
-                                find your perfect fit.
-                            </p>
-                            <div class="hero-buttons justify-content-lg-end">
-                                <a href="#products" class="btn btn-primary btn-lg" onclick="filterCategory('Essential Bottoms')">
-                                    Shop Bottoms <i class="fas fa-arrow-right ms-2"></i>
-                                </a>
+                <!-- Slide 4 - Essential Bottoms -->
+                <div class="hero-slide" data-slide="3" role="group" aria-label="Slide 4 of 4">
+                    <div class="row align-items-center min-vh-50">
+                        <div class="col-lg-6 order-lg-2">
+                            <div class="hero-content text-lg-end">
+                                <span class="hero-badge">ESSENTIAL BOTTOMS</span>
+                                <h1 class="hero-title">
+                                    Style From <br>
+                                    <span class="highlight">The Ground Up</span>
+                                </h1>
+                                <p class="hero-text ms-lg-auto">
+                                    Premium bottoms for every occasion. From cargo to denim, 
+                                    find your perfect fit.
+                                </p>
+                                <div class="hero-buttons justify-content-lg-end">
+                                    <a href="#products" class="btn btn-primary btn-lg" onclick="filterCategory('Essential Bottoms')">
+                                        Shop Bottoms <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 order-lg-1">
+                            <div class="hero-image-wrapper">
+                                <img src="assets/banner-3.png" alt="KADET Bottoms Collection" class="img-fluid hero-image" width="600" height="400" loading="lazy">
+                                <div class="hero-floating-badge">
+                                    <span class="badge bg-orange pulse">NEW ARRIVAL</span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 order-lg-1">
-                        <div class="hero-image-wrapper">
-                            <img src="assets/banner-2.png" alt="KADET Bottoms" class="img-fluid hero-image">
-                        
-                        </div>
-                    </div>
                 </div>
-            </div>
 
-            <!-- Slider Indicators -->
-            <div class="slider-indicators">
-                <button class="slider-dot active" data-slide="0" aria-label="Slide 1"></button>
-                <button class="slider-dot" data-slide="1" aria-label="Slide 2"></button>
-                <button class="slider-dot" data-slide="2" aria-label="Slide 3"></button>
-                <button class="slider-dot" data-slide="3" aria-label="Slide 4"></button>
-            </div>
+                <!-- Slider Indicators -->
+                <div class="slider-indicators" role="tablist" aria-label="Slide indicators">
+                    <button class="slider-dot active" data-slide="0" role="tab" aria-label="Slide 1" aria-current="true"></button>
+                    <button class="slider-dot" data-slide="1" role="tab" aria-label="Slide 2"></button>
+                    <button class="slider-dot" data-slide="2" role="tab" aria-label="Slide 3"></button>
+                    <button class="slider-dot" data-slide="3" role="tab" aria-label="Slide 4"></button>
+                </div>
 
-            <!-- Slider Controls -->
-            <button class="slider-control prev" id="sliderPrev" aria-label="Previous">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <button class="slider-control next" id="sliderNext" aria-label="Next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+                <!-- Slider Controls -->
+                <button class="slider-control prev" id="sliderPrev" aria-label="Previous slide">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <button class="slider-control next" id="sliderNext" aria-label="Next slide">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
         </div>
-    </div>
-</section>
-      
+    </section>
 
     <!-- ============================================ -->
     <!-- COUNTDOWN TIMER -->
     <!-- ============================================ -->
-    <section id="drop" class="countdown-section">
+    <section id="drop" class="countdown-section" aria-label="Countdown timer">
         <div class="container">
             <div class="countdown-wrapper">
                 <div class="countdown-label">
-                    <i class="fas fa-clock me-2"></i> NEXT DROP IN
+                    <i class="fas fa-clock me-2" aria-hidden="true"></i> NEXT DROP IN
                 </div>
-                <div id="countdown" class="countdown-timer">00:00:00</div>
+                <div id="countdown" class="countdown-timer" role="timer" aria-label="Countdown timer">00:00:00</div>
                 <div class="countdown-sub">Drop goes live July 2026</div>
             </div>
         </div>
@@ -268,17 +285,19 @@
     <!-- ============================================ -->
     <!-- FILTERS + SEARCH -->
     <!-- ============================================ -->
-    <section class="filters-section">
+    <section class="filters-section" aria-label="Product filters">
         <div class="container">
             <div class="row g-3 align-items-end">
                 <div class="col-md-4">
                     <div class="search-wrapper">
-                        <i class="fas fa-search search-icon"></i>
-                        <input type="text" id="search" class="form-control search-input" placeholder="Search products...">
+                        <i class="fas fa-search search-icon" aria-hidden="true"></i>
+                        <label for="search" class="visually-hidden">Search products</label>
+                        <input type="text" id="search" class="form-control search-input" placeholder="Search products..." aria-label="Search products">
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <select id="categoryFilter" class="form-select filter-select">
+                    <label for="categoryFilter" class="visually-hidden">Filter by category</label>
+                    <select id="categoryFilter" class="form-select filter-select" aria-label="Filter by category">
                         <option value="all">All Categories</option>
                         <option value="Signature Tops">Signature Tops</option>
                         <option value="Matching Sets">Matching Sets</option>
@@ -287,12 +306,13 @@
                 </div>
                 <div class="col-md-3">
                     <div class="price-filter-wrapper">
-                        <label class="price-label">Max Price: <span id="priceLabel">Rs. 5,000</span></label>
-                        <input type="range" id="priceFilter" class="form-range" min="500" max="5000" step="100" value="5000">
+                        <label for="priceFilter" class="price-label">Max Price: <span id="priceLabel">Rs. 5,000</span></label>
+                        <input type="range" id="priceFilter" class="form-range" min="500" max="5000" step="100" value="5000" aria-label="Filter by max price">
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <select id="sortFilter" class="form-select filter-select">
+                    <label for="sortFilter" class="visually-hidden">Sort products</label>
+                    <select id="sortFilter" class="form-select filter-select" aria-label="Sort products">
                         <option value="default">Sort By</option>
                         <option value="price-low">Price: Low → High</option>
                         <option value="price-high">Price: High → Low</option>
@@ -306,7 +326,7 @@
     <!-- ============================================ -->
     <!-- PRODUCT GRID -->
     <!-- ============================================ -->
-    <section id="products" class="products-section">
+    <section id="products" class="products-section" aria-label="Products">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Signature Collection</h2>
@@ -321,14 +341,14 @@
     <!-- ============================================ -->
     <!-- CART MODAL -->
     <!-- ============================================ -->
-    <div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-label="Shopping cart">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="fas fa-shopping-bag me-2"></i> Your Cart
+                        <i class="fas fa-shopping-bag me-2" aria-hidden="true"></i> Your Cart
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close cart"></button>
                 </div>
                 <div class="modal-body">
                     <div id="cartItems" class="cart-items">
@@ -340,8 +360,9 @@
                             <span id="cartTotal">Rs. 0</span>
                         </div>
                         <div class="discount-section">
-                            <input type="text" id="discountCode" class="form-control" placeholder="Enter discount code">
-                            <button id="applyDiscount" class="btn btn-outline-orange">Apply</button>
+                            <label for="discountCode" class="visually-hidden">Discount code</label>
+                            <input type="text" id="discountCode" class="form-control" placeholder="Enter discount code" aria-label="Discount code">
+                            <button id="applyDiscount" class="btn btn-outline-orange" aria-label="Apply discount">Apply</button>
                         </div>
                         <div id="discountMessage" class="discount-message"></div>
                     </div>
@@ -349,7 +370,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-bs-dismiss="modal">Continue Shopping</button>
                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#checkoutModal" data-bs-dismiss="modal">
-                        Checkout <i class="fas fa-arrow-right ms-2"></i>
+                        Checkout <i class="fas fa-arrow-right ms-2" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -359,14 +380,14 @@
     <!-- ============================================ -->
     <!-- WISHLIST MODAL -->
     <!-- ============================================ -->
-    <div class="modal fade" id="wishlistModal" tabindex="-1">
+    <div class="modal fade" id="wishlistModal" tabindex="-1" role="dialog" aria-label="Wishlist">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">
-                        <i class="fas fa-heart me-2 text-danger"></i> Your Wishlist
+                        <i class="fas fa-heart me-2 text-danger" aria-hidden="true"></i> Your Wishlist
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close wishlist"></button>
                 </div>
                 <div class="modal-body">
                     <div id="wishlistItems" class="wishlist-items">
@@ -383,39 +404,39 @@
     <!-- ============================================ -->
     <!-- CHECKOUT MODAL -->
     <!-- ============================================ -->
-    <div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-label="Checkout">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Checkout</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close checkout"></button>
                 </div>
                 <div class="modal-body">
                     <form id="checkoutForm" novalidate>
                         <div class="mb-3">
-                            <label class="form-label">Full Name</label>
-                            <input type="text" class="form-control" id="checkoutName" required>
+                            <label for="checkoutName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="checkoutName" required aria-required="true">
                             <div class="invalid-feedback">Please enter your name</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Email</label>
-                            <input type="email" class="form-control" id="checkoutEmail" required>
+                            <label for="checkoutEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="checkoutEmail" required aria-required="true">
                             <div class="invalid-feedback">Please enter a valid email</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Phone</label>
-                            <input type="tel" class="form-control" id="checkoutPhone" required>
+                            <label for="checkoutPhone" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" id="checkoutPhone" required aria-required="true">
                             <div class="invalid-feedback">Please enter your phone number</div>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Shipping Address</label>
-                            <textarea class="form-control" id="checkoutAddress" rows="2" required></textarea>
+                            <label for="checkoutAddress" class="form-label">Shipping Address</label>
+                            <textarea class="form-control" id="checkoutAddress" rows="2" required aria-required="true"></textarea>
                             <div class="invalid-feedback">Please enter your address</div>
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Place Order</button>
                     </form>
                     <div id="orderSuccess" class="alert alert-success mt-3 d-none">
-                        <i class="fas fa-check-circle me-2"></i> Order placed successfully!
+                        <i class="fas fa-check-circle me-2" aria-hidden="true"></i> Order placed successfully!
                     </div>
                 </div>
             </div>
@@ -425,22 +446,22 @@
     <!-- ============================================ -->
     <!-- PRODUCT DETAIL MODAL -->
     <!-- ============================================ -->
-    <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-label="Product details">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title" id="modalTitle">Product Name</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close product details"></button>
                 </div>
                 <div class="modal-body">
                     <div class="row g-4">
                         <div class="col-md-6">
-                            <img id="modalImage" src="" class="img-fluid rounded-3 w-100" alt="Product" style="object-fit: cover; aspect-ratio: 1;">
+                            <img id="modalImage" src="" class="img-fluid rounded-3 w-100" alt="Product" style="object-fit: cover; aspect-ratio: 1;" width="400" height="400">
                         </div>
                         <div class="col-md-6">
                             <h3 id="modalName" class="fw-bold mb-2">Product Name</h3>
                             <div class="mb-2">
-                                <span id="modalRating" class="text-warning">★★★★★</span>
+                                <span id="modalRating" class="text-warning" aria-label="Product rating">★★★★★</span>
                                 <span class="text-muted ms-2" id="modalRatingValue">(4.5)</span>
                             </div>
                             <h4 id="modalPrice" class="text-orange fw-bold mb-3">Rs. 0</h4>
@@ -449,12 +470,12 @@
                             <!-- Size Selection -->
                             <div class="mb-3">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <label class="fw-bold mb-1">Size</label>
-                                    <button type="button" class="btn btn-link btn-sm p-0 text-orange" onclick="openSizeChart()">
-                                        <i class="fas fa-ruler me-1"></i> Size Guide
+                                    <label for="productSize" class="fw-bold mb-1">Size</label>
+                                    <button type="button" class="btn btn-link btn-sm p-0 text-orange" onclick="openSizeChart()" aria-label="Open size guide">
+                                        <i class="fas fa-ruler me-1" aria-hidden="true"></i> Size Guide
                                     </button>
                                 </div>
-                                <select id="productSize" class="form-select form-select-lg border-2" style="border-radius: 12px; background: var(--off-white);">
+                                <select id="productSize" class="form-select form-select-lg border-2" style="border-radius: 12px; background: var(--off-white);" aria-label="Select size">
                                     <option value="">Select Size</option>
                                     <option value="XS">XS</option>
                                     <option value="S">S</option>
@@ -467,18 +488,18 @@
                             
                             <!-- Quantity -->
                             <div class="mb-3">
-                                <label class="fw-bold mb-1">Quantity</label>
+                                <label for="modalQty" class="fw-bold mb-1">Quantity</label>
                                 <div class="d-flex align-items-center gap-3">
-                                    <button class="btn btn-outline-dark btn-sm rounded-circle" id="qtyDecrease" style="width: 36px; height: 36px;">−</button>
+                                    <button class="btn btn-outline-dark btn-sm rounded-circle" id="qtyDecrease" style="width: 36px; height: 36px;" aria-label="Decrease quantity">−</button>
                                     <span id="modalQty" class="fw-bold fs-5" style="min-width: 30px; text-align: center;">1</span>
-                                    <button class="btn btn-outline-dark btn-sm rounded-circle" id="qtyIncrease" style="width: 36px; height: 36px;">+</button>
+                                    <button class="btn btn-outline-dark btn-sm rounded-circle" id="qtyIncrease" style="width: 36px; height: 36px;" aria-label="Increase quantity">+</button>
                                     <span class="text-muted ms-2" id="modalStockInfo">(12 available)</span>
                                 </div>
                             </div>
                             
                             <!-- Add to Cart -->
-                            <button class="btn btn-primary w-100 py-3 fw-bold" id="modalAddToCart" style="border-radius: 12px; font-size: 16px;">
-                                <i class="fas fa-shopping-bag me-2"></i> Add to Cart
+                            <button class="btn btn-primary w-100 py-3 fw-bold" id="modalAddToCart" style="border-radius: 12px; font-size: 16px;" aria-label="Add to cart">
+                                <i class="fas fa-shopping-bag me-2" aria-hidden="true"></i> Add to Cart
                             </button>
                             
                             <hr>
@@ -497,15 +518,15 @@
     <!-- ============================================ -->
     <!-- SIZE CHART MODAL -->
     <!-- ============================================ -->
-    <div class="modal fade" id="sizeChartModal" tabindex="-1">
+    <div class="modal fade" id="sizeChartModal" tabindex="-1" role="dialog" aria-label="Size chart">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header border-0">
                     <h5 class="modal-title">
-                        <i class="fas fa-ruler me-2 text-orange"></i>
+                        <i class="fas fa-ruler me-2 text-orange" aria-hidden="true"></i>
                         <span id="sizeChartTitle">KADET Size Guide</span>
                     </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close size chart"></button>
                 </div>
                 <div class="modal-body">
                     <div id="sizeChartContent">
@@ -513,7 +534,7 @@
                     </div>
                     <div class="mt-4 p-3" style="background: var(--off-white); border-radius: 12px; border-left: 4px solid var(--orange);">
                         <h6 class="fw-bold mb-2">
-                            <i class="fas fa-tape me-2 text-orange"></i> How to Measure
+                            <i class="fas fa-tape me-2 text-orange" aria-hidden="true"></i> How to Measure
                         </h6>
                         <div id="measurementGuide">
                             <!-- Rendered by JavaScript -->
@@ -531,12 +552,12 @@
     <!-- TOAST NOTIFICATION -->
     <!-- ============================================ -->
     <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="toastNotification" class="toast align-items-center text-white bg-dark border-0" role="alert">
+        <div id="toastNotification" class="toast align-items-center text-white bg-dark border-0" role="alert" aria-live="polite">
             <div class="d-flex">
                 <div class="toast-body" id="toastMessage">
-                    <i class="fas fa-check-circle me-2 text-orange"></i> Added to cart!
+                    <i class="fas fa-check-circle me-2 text-orange" aria-hidden="true"></i> Added to cart!
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close notification"></button>
             </div>
         </div>
     </div>
@@ -544,12 +565,12 @@
     <!-- ============================================ -->
     <!-- FOOTER -->
     <!-- ============================================ -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-brand">
-                        <img src="assets/logo.png" alt="KADET" height="35">
+                        <img src="assets/logo.png" alt="KADET" height="35" width="35" height="35">
                         <span class="footer-brand-text">KADET</span>
                     </div>
                     <p class="footer-text">Premium streetwear for the bold. Limited drops, timeless style.</p>
@@ -565,9 +586,9 @@
                 <div class="col-md-4">
                     <h6 class="footer-heading">Connect</h6>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>

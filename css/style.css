@@ -1446,3 +1446,103 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 12px;
     }
 }
+
+/* ============================================ */
+/* ACCESSIBILITY & PERFORMANCE FIXES
+/* ============================================ */
+
+/* ---------- Better Contrast ---------- */
+.text-muted {
+    color: #6B7280 !important;
+}
+
+.hero-text {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.card-title {
+    color: #1A1A1A;
+}
+
+[data-bs-theme="dark"] .card-title {
+    color: #FFFFFF;
+}
+
+/* ---------- Visually Hidden (for screen readers) ---------- */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* ---------- Touch Targets (mobile accessibility) ---------- */
+.btn,
+.nav-link,
+.slider-control,
+.slider-dot,
+.wishlist-btn,
+.cart-item-remove,
+.slider-dot {
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.nav-link .badge {
+    min-width: 18px;
+    min-height: 18px;
+}
+
+/* ---------- Focus Styles ---------- */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 2px;
+}
+
+/* ---------- Reduced Motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .hero-slide {
+        animation: none !important;
+    }
+    
+    .hero-slide.active .hero-image {
+        animation: none !important;
+    }
+    
+    .hero-floating-badge {
+        animation: none !important;
+    }
+}
+
+/* ---------- Print Styles ---------- */
+@media print {
+    .top-bar,
+    .navbar,
+    .hero-section,
+    .countdown-section,
+    .filters-section,
+    .footer {
+        display: none !important;
+    }
+    
+    .products-section {
+        padding: 20px 0 !important;
+    }
+}

@@ -37,7 +37,7 @@ let currentProductId = null;
 // TOAST NOTIFICATION
 // ========================================
 function showToast(message, icon = 'fa-check-circle') {
-    toastMessage.innerHTML = `<i class="fas ${icon} me-2 text-orange"></i> ${message}`;
+    toastMessage.innerHTML = `<i class="fas ${icon} me-2 text-orange" aria-hidden="true"></i> ${message}`;
     const toast = new bootstrap.Toast(toastNotification, { delay: 2500 });
     toast.show();
 }
@@ -128,7 +128,7 @@ function renderCart() {
     if (cart.length === 0) {
         cartItems.innerHTML = `
             <div class="text-center py-4">
-                <i class="fas fa-shopping-bag fa-3x mb-3" style="color: rgba(0,0,0,0.1);"></i>
+                <i class="fas fa-shopping-bag fa-3x mb-3" style="color: rgba(0,0,0,0.1);" aria-hidden="true"></i>
                 <p class="text-muted">Your cart is empty</p>
             </div>
         `;
@@ -153,11 +153,11 @@ function renderCart() {
                     <div class="cart-item-price">Rs. ${product.price.toLocaleString()}</div>
                 </div>
                 <div class="cart-item-qty">
-                    <button onclick="updateQuantity(${product.id}, -1)">−</button>
+                    <button onclick="updateQuantity(${product.id}, -1)" aria-label="Decrease quantity">−</button>
                     <span>${item.qty}</span>
-                    <button onclick="updateQuantity(${product.id}, 1)">+</button>
-                    <button class="cart-item-remove" onclick="removeFromCart(${product.id})">
-                        <i class="fas fa-trash-alt"></i>
+                    <button onclick="updateQuantity(${product.id}, 1)" aria-label="Increase quantity">+</button>
+                    <button class="cart-item-remove" onclick="removeFromCart(${product.id})" aria-label="Remove item">
+                        <i class="fas fa-trash-alt" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -230,7 +230,7 @@ function renderWishlist() {
     if (wishlist.length === 0) {
         wishlistItems.innerHTML = `
             <div class="wishlist-empty">
-                <i class="far fa-heart fa-3x mb-3"></i>
+                <i class="far fa-heart fa-3x mb-3" aria-hidden="true"></i>
                 <p>Your wishlist is empty</p>
                 <small>Start adding items you love!</small>
             </div>
@@ -247,11 +247,11 @@ function renderWishlist() {
                 <span class="wishlist-item-name">${product.name}</span>
                 <div>
                     <span class="wishlist-item-price me-3">Rs. ${product.price.toLocaleString()}</span>
-                    <button class="btn btn-sm btn-primary" onclick="addToCart(${product.id})">
-                        <i class="fas fa-shopping-bag"></i>
+                    <button class="btn btn-sm btn-primary" onclick="addToCart(${product.id})" aria-label="Add to cart">
+                        <i class="fas fa-shopping-bag" aria-hidden="true"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="toggleWishlist(${product.id})">
-                        <i class="fas fa-heart"></i>
+                    <button class="btn btn-sm btn-danger" onclick="toggleWishlist(${product.id})" aria-label="Remove from wishlist">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
                     </button>
                 </div>
             </div>
@@ -314,7 +314,7 @@ function startCountdown(targetDate) {
 }
 
 // ========================================
-// PRODUCT RENDERING
+// PRODUCT RENDERING (FIXED - No Duplicate)
 // ========================================
 function getFilteredProducts() {
     const query = searchInput.value.toLowerCase();
@@ -344,7 +344,7 @@ function renderProducts(products) {
     if (products.length === 0) {
         productGrid.innerHTML = `
             <div class="col-12 text-center py-5">
-                <i class="fas fa-search fa-3x mb-3" style="color: rgba(0,0,0,0.1);"></i>
+                <i class="fas fa-search fa-3x mb-3" style="color: rgba(0,0,0,0.1);" aria-hidden="true"></i>
                 <h5>No products found</h5>
                 <p class="text-muted">Try adjusting your filters</p>
             </div>
@@ -365,10 +365,15 @@ function renderProducts(products) {
             <div class="col-6 col-md-4 col-lg-3">
                 <div class="product-card">
                     ${soldOut ? '<div class="sold-out-badge">Sold Out</div>' : ''}
-                    <button class="wishlist-btn" onclick="toggleWishlist(${p.id})">
-                        <i class="fa${isWishlisted ? 's' : 'r'} fa-heart ${isWishlisted ? 'active' : ''}"></i>
+                    <button class="wishlist-btn" onclick="toggleWishlist(${p.id})" aria-label="${isWishlisted ? 'Remove from' : 'Add to'} wishlist">
+                        <i class="fa${isWishlisted ? 's' : 'r'} fa-heart ${isWishlisted ? 'active' : ''}" aria-hidden="true"></i>
                     </button>
-                    <img src="${p.image}" class="card-img-top" alt="${p.name}" 
+                    <img src="${p.image}" 
+                         class="card-img-top" 
+                         alt="${p.name} — KADET Streetwear" 
+                         loading="lazy"
+                         width="400"
+                         height="400"
                          onclick="openProductModal(${p.id})">
                     <div class="card-body">
                         <h6 class="card-title">${p.name}</h6>
@@ -380,8 +385,8 @@ function renderProducts(products) {
                         <div class="card-stock ${soldOut ? 'sold-out' : lowStock ? 'low' : ''}">
                             ${soldOut ? '❌ Sold Out' : lowStock ? '⚠️ ' + stockText : '✅ In Stock'}
                         </div>
-                        <button class="btn-add-cart" onclick="addToCart(${p.id})" ${soldOut ? 'disabled' : ''}>
-                            ${soldOut ? 'Sold Out' : '<i class="fas fa-shopping-bag me-2"></i> Add to Cart'}
+                        <button class="btn-add-cart" onclick="addToCart(${p.id})" ${soldOut ? 'disabled' : ''} aria-label="Add ${p.name} to cart">
+                            ${soldOut ? 'Sold Out' : '<i class="fas fa-shopping-bag me-2" aria-hidden="true"></i> Add to Cart'}
                         </button>
                     </div>
                 </div>
@@ -437,10 +442,10 @@ function openProductModal(productId) {
     const addBtn = document.getElementById('modalAddToCart');
     if (product.stock <= 0) {
         addBtn.disabled = true;
-        addBtn.innerHTML = '<i class="fas fa-times me-2"></i> Sold Out';
+        addBtn.innerHTML = '<i class="fas fa-times me-2" aria-hidden="true"></i> Sold Out';
     } else {
         addBtn.disabled = false;
-        addBtn.innerHTML = '<i class="fas fa-shopping-bag me-2"></i> Add to Cart';
+        addBtn.innerHTML = '<i class="fas fa-shopping-bag me-2" aria-hidden="true"></i> Add to Cart';
     }
 
     updateSizeChartForProduct(product);
@@ -683,7 +688,7 @@ const savedTheme = localStorage.getItem('kadet_theme');
 if (savedTheme === 'dark') {
     darkMode = true;
     document.documentElement.setAttribute('data-bs-theme', 'dark');
-    document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun me-1"></i> <span id="darkModeLabel">Light</span>';
+    document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
 }
 
 document.getElementById('darkModeToggle').addEventListener('click', function(e) {
@@ -691,11 +696,10 @@ document.getElementById('darkModeToggle').addEventListener('click', function(e) 
     darkMode = !darkMode;
     document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
     
-    const label = this.querySelector('#darkModeLabel') || this;
     if (darkMode) {
-        this.innerHTML = '<i class="fas fa-sun me-1"></i> <span id="darkModeLabel">Light</span>';
+        this.innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
     } else {
-        this.innerHTML = '<i class="fas fa-moon me-1"></i> <span id="darkModeLabel">Dark</span>';
+        this.innerHTML = '<i class="fas fa-moon me-1" aria-hidden="true"></i> <span id="darkModeLabel">Dark</span>';
     }
     
     localStorage.setItem('kadet_theme', darkMode ? 'dark' : 'light');
@@ -720,7 +724,6 @@ document.getElementById('footerHomeLink').addEventListener('click', function(e) 
 function filterCategory(category) {
     categoryFilter.value = category;
     applyFilters();
-    // Smooth scroll to products
     document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
 }
 
@@ -742,9 +745,9 @@ window.addEventListener('storage', function(e) {
         document.documentElement.setAttribute('data-bs-theme', theme ? 'dark' : 'light');
         const toggle = document.getElementById('darkModeToggle');
         if (theme) {
-            toggle.innerHTML = '<i class="fas fa-sun me-1"></i> <span id="darkModeLabel">Light</span>';
+            toggle.innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
         } else {
-            toggle.innerHTML = '<i class="fas fa-moon me-1"></i> <span id="darkModeLabel">Dark</span>';
+            toggle.innerHTML = '<i class="fas fa-moon me-1" aria-hidden="true"></i> <span id="darkModeLabel">Dark</span>';
         }
     }
 });
@@ -866,7 +869,6 @@ function init() {
     startCountdown('2026-07-15T18:00:00');
     priceLabel.textContent = `Rs. 5,000`;
     
-    // Initialize slider
     initSlider();
 }
 
