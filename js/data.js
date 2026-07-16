@@ -4,9 +4,6 @@
 // Targeting: Ages 10-18
 // ========================================
 
-// ========================================
-// SIZE CHART SYSTEM
-// ========================================
 const SIZE_CHART = {
     tops: {
         title: "Tops Size Guide",
@@ -65,351 +62,56 @@ function getSizeChart(category) {
 }
 
 // ========================================
-// PRODUCTS (39 Products Total)
-// 10 Tops + 18 Sets + 11 Bottoms = 39
+// PRODUCTS (34 Products Total)
+// 12 Tops + 11 Sets + 11 Bottoms = 34
 // ========================================
 const PRODUCTS = [
     // ========================================
-    // SIGNATURE TOPS (10 Products)
+    // SIGNATURE TOPS (12 Products) — IDs 1-12
     // ========================================
-    {
-        id: 1,
-        name: "Green Graphic Printed Cotton T-Shirt",
-        category: "Signature Tops",
-        price: 1100,
-        stock: 12,
-        rating: 4.5,
-        image: "assets/shirt-1.jpeg",
-        description: "Add a bold touch to your wardrobe with this stylish green graphic printed T-shirt. Crafted from soft and breathable cotton fabric for all-day comfort.",
-        details: { color: "Green", pattern: "Graphic Print", neck: "Round Neck", sleeves: "Half Sleeves", fabric: "Soft Cotton Blend", fit: "Regular Fit", occasion: "Casual / Daily Wear", care: "Machine Wash" }
-    },
-    {
-        id: 2,
-        name: "Mehroon Graphic Printed Cotton T-Shirt",
-        category: "Signature Tops",
-        price: 1100,
-        stock: 10,
-        rating: 4.6,
-        image: "assets/shirt-2.jpeg",
-        description: "Make a statement with this vibrant mehroon graphic printed T-shirt. Premium cotton blend with a trendy front print.",
-        details: { color: "Mehroon", pattern: "Graphic Print", neck: "Round Neck", sleeves: "Half Sleeves", fabric: "Soft Cotton Blend", fit: "Regular Fit", occasion: "Casual / Daily Wear", care: "Machine Wash" }
-    },
-    {
-        id: 3,
-        name: "Sky Blue Casual Check Shirt",
-        category: "Signature Tops",
-        price: 1400,
-        stock: 8,
-        rating: 4.4,
-        image: "assets/shirt-3.jpeg",
-        description: "Classic sky blue checkered shirt for a smart casual look. Perfect for outings and everyday elegance.",
-        details: { color: "Sky Blue", pattern: "Checkered", neck: "Button-Down Collar", sleeves: "Full Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Smart Casual / Party Wear", care: "Machine Wash" }
-    },
-    {
-        id: 4,
-        name: "Light Pink Checkered Casual Shirt",
-        category: "Signature Tops",
-        price: 1400,
-        stock: 7,
-        rating: 4.3,
-        image: "assets/shirt-4.jpeg",
-        description: "Trendy light pink checkered shirt for a modern, stylish look. Soft cotton fabric with a comfortable regular fit.",
-        details: { color: "Light Pink", pattern: "Checkered", neck: "Button-Down Collar", sleeves: "Full Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Smart Casual / Party Wear", care: "Machine Wash" }
-    },
-    {
-        id: 5,
-        name: "Navy Blue Classic Polo T-Shirt",
-        category: "Signature Tops",
-        price: 1200,
-        stock: 15,
-        rating: 4.7,
-        image: "assets/shirt-5.jpeg",
-        description: "Classic navy blue polo T-shirt with a timeless design. Perfect for school, casual outings, and weekend wear.",
-        details: { color: "Navy Blue", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / School Wear", care: "Machine Wash" }
-    },
-    {
-        id: 6,
-        name: "Light Grey Classic Polo Shirt",
-        category: "Signature Tops",
-        price: 1200,
-        stock: 11,
-        rating: 4.5,
-        image: "assets/shirt-6.jpeg",
-        description: "Versatile light grey polo shirt that pairs perfectly with jeans, shorts, or trousers. A wardrobe essential.",
-        details: { color: "Light Grey", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / School Wear", care: "Machine Wash" }
-    },
-    {
-        id: 7,
-        name: "Sky Blue Polo T-Shirt",
-        category: "Signature Tops",
-        price: 1200,
-        stock: 9,
-        rating: 4.6,
-        image: "assets/shirt-7.jpeg",
-        description: "Fresh sky blue polo T-shirt with a clean, modern look. Soft and breathable for all-day comfort.",
-        details: { color: "Sky Blue", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / School Wear", care: "Machine Wash" }
-    },
-    {
-        id: 8,
-        name: "Premium Sage Green Polo T-Shirt",
-        category: "Signature Tops",
-        price: 1200,
-        stock: 6,
-        rating: 4.8,
-        image: "assets/shirt-8.jpeg",
-        description: "Premium sage green polo shirt with a sophisticated look. Limited stock available — grab yours now!",
-        details: { color: "Sage Green", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / School Wear", care: "Machine Wash" }
-    },
-    {
-        id: 9,
-        name: "Premium Black Graphic Cotton T-Shirt",
-        category: "Signature Tops",
-        price: 1300,
-        stock: 5,
-        rating: 4.7,
-        image: "assets/shirt-9.jpeg",
-        description: "Premium black graphic T-shirt with a bold design. Streetwear-inspired print for the modern wardrobe.",
-        details: { color: "Black", pattern: "Graphic Print", neck: "Round Neck", sleeves: "Short Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
-    {
-        id: 10,
-        name: "Premium White Graphic Cotton T-Shirt",
-        category: "Signature Tops",
-        price: 1300,
-        stock: 4,
-        rating: 4.7,
-        image: "assets/shirt-10.jpeg",
-        description: "Premium white graphic T-shirt with a trendy print. A must-have staple for every wardrobe.",
-        details: { color: "White", pattern: "Graphic Print", neck: "Round Neck", sleeves: "Short Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
+    { id: 1, name: "White Raglan Cotton T-Shirt", category: "Signature Tops", price: 3100, stock: 12, rating: 4.8, image: "assets/shirt-1.png", description: "Minimal white raglan T-shirt featuring contrasting black sleeves. Crafted from premium breathable cotton for effortless everyday styling.", details: { color: "White / Black", pattern: "Color Block", neck: "Round Neck", sleeves: "Short Raglan Sleeves", fabric: "Premium Cotton", fit: "Relaxed Fit", occasion: "Casual / Streetwear", care: "Machine Wash Cold" } },
+    { id: 2, name: "Black Athletic Contrast T-Shirt", category: "Signature Tops", price: 3200, stock: 10, rating: 4.8, image: "assets/shirt-2.png", description: "Modern black athletic T-shirt with clean contrast piping and a premium oversized silhouette.", details: { color: "Black", pattern: "Contrast Piping", neck: "Round Neck", sleeves: "Short Sleeves", fabric: "Premium Cotton Blend", fit: "Relaxed Fit", occasion: "Casual / Sportswear", care: "Machine Wash Cold" } },
+    { id: 3, name: "Olive Green Essential Cotton T-Shirt", category: "Signature Tops", price: 2600, stock: 15, rating: 4.8, image: "assets/shirt-3.png", description: "Premium olive green T-shirt with a clean minimalist design. Soft, breathable and perfect for daily wear.", details: { color: "Olive Green", pattern: "Solid", neck: "Round Neck", sleeves: "Short Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Casual / Everyday", care: "Machine Wash Cold" } },
+    { id: 4, name: "Maroon Vertical Stripe T-Shirt", category: "Signature Tops", price: 2700, stock: 8, rating: 4.7, image: "assets/shirt-4.png", description: "Premium maroon striped T-shirt with vertical pinstripes and contrasting black sleeve cuffs.", details: { color: "Maroon", pattern: "Vertical Stripes", neck: "Round Neck", sleeves: "Short Sleeves", fabric: "Premium Cotton", fit: "Relaxed Fit", occasion: "Casual / Streetwear", care: "Machine Wash Cold" } },
+    { id: 5, name: "Navy Blue Classic Polo Shirt", category: "Signature Tops", price: 2800, stock: 14, rating: 4.9, image: "assets/shirt-5.png", description: "Classic navy blue polo shirt featuring premium cotton pique fabric and a timeless embroidered chest logo.", details: { color: "Navy Blue", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / Smart Casual", care: "Machine Wash Cold" } },
+    { id: 6, name: "Sage Green Classic Polo Shirt", category: "Signature Tops", price: 2800, stock: 10, rating: 4.8, image: "assets/shirt-6.png", description: "Elegant sage green polo shirt crafted from premium cotton pique with a refined everyday look.", details: { color: "Sage Green", pattern: "Solid", neck: "Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton Pique", fit: "Regular Fit", occasion: "Casual / Smart Casual", care: "Machine Wash Cold" } },
+    { id: 7, name: "Sky Blue Ribbed Knit Polo", category: "Signature Tops", price: 3000, stock: 9, rating: 4.9, image: "assets/shirt-7.png", description: "Luxury sky blue ribbed knit polo featuring an open collar and premium stretch knit construction.", details: { color: "Sky Blue", pattern: "Ribbed Knit", neck: "Open Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Knit Cotton", fit: "Slim Fit", occasion: "Smart Casual", care: "Hand Wash" } },
+    { id: 8, name: "Beige Ribbed Knit Polo", category: "Signature Tops", price: 3000, stock: 7, rating: 4.9, image: "assets/shirt-8.png", description: "Premium beige ribbed knit polo accented with a contrasting brown collar for an elevated smart casual style.", details: { color: "Beige", pattern: "Ribbed Knit", neck: "Contrast Polo Collar", sleeves: "Short Sleeves", fabric: "Premium Knit Cotton", fit: "Slim Fit", occasion: "Smart Casual / Evening", care: "Hand Wash" } },
+    { id: 9, name: "Sky Blue Casual Shirt", category: "Signature Tops", price: 2800, stock: 8, rating: 4.8, image: "assets/shirt-9.png", description: "Premium sky blue casual shirt with subtle micro checks and a breathable cotton construction.", details: { color: "Sky Blue", pattern: "Micro Checks", neck: "Classic Collar", sleeves: "Short Sleeves", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Casual / Smart Casual", care: "Machine Wash Cold" } },
+    { id: 10, name: "Olive Green Striped Resort Shirt", category: "Signature Tops", price: 2950, stock: 6, rating: 4.8, image: "assets/shirt-10.png", description: "Premium olive green striped resort shirt featuring a relaxed camp collar and breathable cotton-linen fabric.", details: { color: "Olive Green", pattern: "Vertical Stripes", neck: "Camp Collar", sleeves: "Short Sleeves", fabric: "Cotton Linen Blend", fit: "Relaxed Fit", occasion: "Resort / Casual", care: "Machine Wash Cold" } },
+    { id: 11, name: "Mocha Brown Striped Resort Shirt", category: "Signature Tops", price: 3100, stock: 5, rating: 4.9, image: "assets/shirt-11.png", description: "Premium mocha brown resort shirt with elegant white pinstripes and a modern relaxed silhouette.", details: { color: "Mocha Brown", pattern: "Vertical Pinstripes", neck: "Camp Collar", sleeves: "Short Sleeves", fabric: "Cotton Linen Blend", fit: "Relaxed Fit", occasion: "Smart Casual / Resort", care: "Machine Wash Cold" } },
+    { id: 12, name: "Black Textured Knit Resort Shirt", category: "Signature Tops", price: 3200, stock: 6, rating: 4.9, image: "assets/shirt-12.png", description: "Premium black textured resort shirt featuring an intricate knit pattern, rolled sleeves and a sophisticated camp collar.", details: { color: "Black", pattern: "Textured Knit", neck: "Camp Collar", sleeves: "Rolled Short Sleeves", fabric: "Premium Cotton Knit", fit: "Relaxed Fit", occasion: "Casual / Smart Casual / Evening", care: "Machine Wash Cold" } },
 
     // ========================================
-    // MATCHING SETS (18 Products - Reusing images)
+    // MATCHING SETS (11 Products) — IDs 13-23
     // ========================================
-    {
-        id: 11,
-        name: "Premium Tech Fleece Co-Ord Set",
-        category: "Matching Sets",
-        price: 4900,
-        stock: 8,
-        rating: 4.9,
-        image: "assets/cord-1.png",
-        description: "Premium tech fleece matching set with signature KADET branding. Ultra-soft fabric with a modern streetwear silhouette.",
-        details: { color: "Black/Orange", pattern: "Solid with Logo", fabric: "Tech Fleece", fit: "Relaxed Fit", occasion: "Athleisure / Streetwear", care: "Machine Wash Cold", includes: "Hoodie + Joggers" }
-    },
-    {
-        id: 12,
-        name: "Oversized Knit Co-Ord Set",
-        category: "Matching Sets",
-        price: 4500,
-        stock: 6,
-        rating: 4.7,
-        image: "assets/cord-2.png",
-        description: "Oversized knit matching set with a relaxed silhouette. Premium cotton blend for ultimate comfort and style.",
-        details: { color: "Sage Green", pattern: "Knit Texture", fabric: "Cotton Blend", fit: "Oversized Fit", occasion: "Casual / Streetwear", care: "Machine Wash", includes: "Sweatshirt + Shorts" }
-    },
-    {
-        id: 13,
-        name: "Urban Track Co-Ord Set",
-        category: "Matching Sets",
-        price: 4200,
-        stock: 7,
-        rating: 4.6,
-        image: "assets/cord-3.png",
-        description: "Classic urban track set with contrast stripe detailing. Premium sportswear for the modern trendsetter.",
-        details: { color: "Navy/White", pattern: "Stripe Detail", fabric: "Polyester-Cotton Blend", fit: "Slim Fit", occasion: "Sportswear / Streetwear", care: "Machine Wash", includes: "Track Top + Track Pants" }
-    },
-    {
-        id: 14,
-        name: "Premium Cotton Co-Ord Set",
-        category: "Matching Sets",
-        price: 3800,
-        stock: 5,
-        rating: 4.5,
-        image: "assets/cord-5.png",
-        description: "Premium cotton matching set with a clean, minimal design. Perfect for everyday wear with a touch of luxury.",
-        details: { color: "Beige", pattern: "Solid", fabric: "100% Premium Cotton", fit: "Regular Fit", occasion: "Casual / Daily Wear", care: "Machine Wash", includes: "Tee + Shorts" }
-    },
-    {
-        id: 15,
-        name: "Streetwear Hoodie Co-Ord Set",
-        category: "Matching Sets",
-        price: 3600,
-        stock: 4,
-        rating: 4.4,
-        image: "assets/cord-6.png",
-        description: "Streetwear-inspired hoodie and jogger set. Relaxed fit with bold graphics for an urban aesthetic.",
-        details: { color: "Charcoal", pattern: "Graphic Print", fabric: "Cotton-Polyester Blend", fit: "Relaxed Fit", occasion: "Streetwear / Casual", care: "Machine Wash", includes: "Hoodie + Joggers" }
-    },
-    {
-        id: 16,
-        name: "Minimalist Co-Ord Set",
-        category: "Matching Sets",
-        price: 3200,
-        stock: 9,
-        rating: 4.3,
-        image: "assets/cord-7.png",
-        description: "Clean and minimalist matching set for effortless style. Premium fabric with a modern, understated look.",
-        details: { color: "Oatmeal", pattern: "Solid", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Casual / Minimalist", care: "Machine Wash", includes: "Tee + Shorts" }
-    },
-    {
-        id: 17,
-        name: "Essential Cotton Co-Ord Set",
-        category: "Matching Sets",
-        price: 2900,
-        stock: 10,
-        rating: 4.2,
-        image: "assets/cord-8.png",
-        description: "Essential cotton matching set. Breathable, comfortable, and versatile — a wardrobe staple.",
-        details: { color: "Navy", pattern: "Solid", fabric: "Soft Cotton", fit: "Regular Fit", occasion: "Daily Wear / Casual", care: "Machine Wash", includes: "Tee + Shorts" }
-    },
-    {
-        id: 18,
-        name: "Summer Breeze Co-Ord Set",
-        category: "Matching Sets",
-        price: 2700,
-        stock: 12,
-        rating: 4.1,
-        image: "assets/cord-9.png",
-        description: "Lightweight summer matching set. Perfect for warm days with breathable cotton fabric.",
-        details: { color: "Sky Blue", pattern: "Solid", fabric: "Lightweight Cotton", fit: "Relaxed Fit", occasion: "Summer / Beach Wear", care: "Machine Wash", includes: "Tank Top + Shorts" }
-    },
-    {
-        id: 19,
-        name: "Graphic Print Co-Ord Set",
-        category: "Matching Sets",
-        price: 2500,
-        stock: 8,
-        rating: 4.0,
-        image: "assets/cord-3.png",
-        description: "Bold graphic print matching set. Express your style with this eye-catching streetwear piece.",
-        details: { color: "White/Black", pattern: "Graphic Print", fabric: "Premium Cotton", fit: "Regular Fit", occasion: "Streetwear / Casual", care: "Machine Wash", includes: "Tee + Shorts" }
-    },
+    { id: 13, name: "Premium Tech Fleece Co-Ord Set", category: "Matching Sets", price: 4600, stock: 8, rating: 4.9, image: "assets/cord-1.png", description: "Premium tech fleece matching set with signature KADET branding. Ultra-soft fabric with a modern streetwear silhouette.", details: { color: "Bottle Green", pattern: "Solid with Logo", fabric: "Tech Fleece", fit: "Relaxed Fit", occasion: "Athleisure / Streetwear", care: "Machine Wash Cold", includes: "Hoodie + Joggers" } },
+    { id: 14, name: "Oversized Knit Co-Ord Set", category: "Matching Sets", price: 4500, stock: 6, rating: 4.7, image: "assets/cord-2.png", description: "Oversized knit matching set with a relaxed silhouette. Premium cotton blend for ultimate comfort and style.", details: { color: "Black", pattern: "Knit Texture", fabric: "Cotton Blend", fit: "Oversized Fit", occasion: "Casual / Streetwear", care: "Machine Wash", includes: "Sweatshirt + Shorts" } },
+    { id: 15, name: "Urban Track Co-Ord Set", category: "Matching Sets", price: 4600, stock: 7, rating: 4.6, image: "assets/cord-3.png", description: "Classic urban track set with contrast stripe detailing. Premium sportswear for the modern trendsetter.", details: { color: "White", pattern: "Stripe Detail", fabric: "Polyester-Cotton Blend", fit: "Slim Fit", occasion: "Sportswear / Streetwear", care: "Machine Wash", includes: "Track Top + Track Pants" } },
+    { id: 16, name: "Textured Sleeveless Co-Ord Set", category: "Matching Sets", price: 4200, stock: 5, rating: 4.5, image: "assets/cord-4.png", description: "Premium textured sleeveless co-ord set crafted from soft breathable cotton. Designed for all-day comfort with a modern minimal aesthetic.", details: { color: "Navy/White", pattern: "Textured Solid", fabric: "Premium Cotton Blend", fit: "Regular Fit", occasion: "Casual / Summer Wear", care: "Machine Wash", includes: "Sleeveless Tee + Shorts" } },
+    { id: 17, name: "Ribbed Summer Co-Ord Set", category: "Matching Sets", price: 4300, stock: 4, rating: 4.4, image: "assets/cord-5.png", description: "Minimal ribbed sleeveless co-ord featuring a soft cream top and classic black shorts. Lightweight, breathable, and designed for effortless everyday style.", details: { color: "Light Grey", pattern: "Ribbed Solid", fabric: "Premium Ribbed Cotton", fit: "Regular Fit", occasion: "Casual / Daily Wear", care: "Machine Wash", includes: "Sleeveless Tee + Shorts" } },
+    { id: 18, name: "Earth Tone Co-Ord Set", category: "Matching Sets", price: 4800, stock: 9, rating: 4.3, image: "assets/cord-6.png", description: "Modern earth-tone matching set featuring a rich brown oversized tee paired with off-white shorts.", details: { color: "Cream & Black", pattern: "Solid", fabric: "Premium Cotton", fit: "Oversized Fit", occasion: "Casual / Streetwear", care: "Machine Wash", includes: "Tee + Shorts" } },
+    { id: 19, name: "Forest Green Essential Co-Ord Set", category: "Matching Sets", price: 4600, stock: 10, rating: 4.2, image: "assets/cord-7.png", description: "Classic forest green co-ord crafted from soft cotton fabric. A clean and versatile outfit designed for maximum comfort.", details: { color: "Brown & Off White", pattern: "Solid", fabric: "Soft Cotton", fit: "Regular Fit", occasion: "Daily Wear / Casual", care: "Machine Wash", includes: "Tee + Shorts" } },
+    { id: 20, name: "Linen Blend Resort Co-Ord Set", category: "Matching Sets", price: 4200, stock: 12, rating: 4.4, image: "assets/cord-8.png", description: "Lightweight textured shirt and shorts co-ord inspired by resort fashion. Breathable linen-blend fabric delivers exceptional comfort.", details: { color: "Forest Green", pattern: "Textured", fabric: "Cotton Linen Blend", fit: "Relaxed Fit", occasion: "Summer / Resort Wear", care: "Machine Wash", includes: "Shirt + Shorts" } },
+    { id: 21, name: "Butter Yellow Resort Co-Ord Set", category: "Matching Sets", price: 4800, stock: 8, rating: 4.5, image: "assets/cord-9.png", description: "Fresh butter yellow resort co-ord featuring a textured short-sleeve shirt and matching shorts.", details: { color: "Offwhite and Cream", pattern: "Textured", fabric: "Cotton Linen Blend", fit: "Relaxed Fit", occasion: "Resort / Summer Wear", care: "Machine Wash", includes: "Shirt + Shorts" } },
+    { id: 22, name: "Classic Polo Co-Ord Set", category: "Matching Sets", price: 4700, stock: 7, rating: 4.4, image: "assets/cord-10.png", description: "Sophisticated polo-inspired co-ord featuring a textured white polo shirt with navy accents and matching navy shorts.", details: { color: "Butter Yellow", pattern: "Textured", fabric: "Premium Cotton Blend", fit: "Regular Fit", occasion: "Smart Casual / Daily Wear", care: "Machine Wash", includes: "Polo Tee + Shorts" } },
+    { id: 23, name: "Textured Sleeveless Co-Ord Set", category: "Matching Sets", price: 4200, stock: 5, rating: 4.5, image: "assets/cord-11.png", description: "Premium textured sleeveless co-ord set crafted from soft breathable cotton. Designed for all-day comfort with a modern minimal aesthetic.", details: { color: "Navy/White", pattern: "Textured Solid", fabric: "Premium Cotton Blend", fit: "Regular Fit", occasion: "Casual / Summer Wear", care: "Machine Wash", includes: "Sleeveless Tee + Shorts" } },
+    { id: 24, name: "Oversized Cotton Co-Ord Set", category: "Matching Sets", price: 4600, stock: 6, rating: 4.6, image: "assets/cord-12.png", description: "Premium oversized brown co-ord made from heavyweight cotton for a clean contemporary look. Finished with matching shorts.", details: { color: "Coffee Brown", pattern: "Solid", fabric: "Heavyweight Premium Cotton", fit: "Oversized Fit", occasion: "Casual / Streetwear", care: "Machine Wash", includes: "Oversized Tee + Shorts" } },
 
     // ========================================
-    // ESSENTIAL BOTTOMS (11 Products)
+    // ESSENTIAL BOTTOMS (11 Products) — IDs 24-34
     // ========================================
-    {
-        id: 20,
-        name: "Classic Cargo Utility Pants",
-        category: "Essential Bottoms",
-        price: 3200,
-        stock: 10,
-        rating: 4.6,
-        image: "assets/bottom-1.png",
-        description: "Classic cargo utility pants with multiple pockets. Perfect for streetwear and everyday casual looks.",
-        details: { color: "Olive Green", pattern: "Solid", waist: "Elastic with Drawstring", length: "Full Length", fabric: "Cotton Blend", fit: "Relaxed Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
-    {
-        id: 21,
-        name: "Slim Fit Denim Jeans",
-        category: "Essential Bottoms",
-        price: 2800,
-        stock: 12,
-        rating: 4.7,
-        image: "assets/bottom-2.png",
-        description: "Classic slim fit denim jeans with slight stretch. Everyday essential for the modern wardrobe.",
-        details: { color: "Medium Blue Wash", pattern: "Solid", waist: "Button Fly", length: "Full Length", fabric: "Denim with Stretch", fit: "Slim Fit", occasion: "Casual / Daily Wear", care: "Machine Wash" }
-    },
-    {
-        id: 22,
-        name: "Pleated Wide-Leg Trousers",
-        category: "Essential Bottoms",
-        price: 3500,
-        stock: 6,
-        rating: 4.4,
-        image: "assets/bottom-3.png",
-        description: "Wide-leg pleated trousers with belt loops. Elevated streetwear for a sophisticated look.",
-        details: { color: "Beige", pattern: "Solid", waist: "Belt Loops", length: "Full Length", fabric: "Premium Blend", fit: "Wide-Leg", occasion: "Smart Casual / Streetwear", care: "Dry Clean Recommended" }
-    },
-    {
-        id: 23,
-        name: "Jogger Cargo Pants",
-        category: "Essential Bottoms",
-        price: 3000,
-        stock: 8,
-        rating: 4.5,
-        image: "assets/bottom-4.png",
-        description: "Comfortable jogger cargo pants with elastic cuffs. Streetwear meets comfort.",
-        details: { color: "Charcoal", pattern: "Solid", waist: "Elastic with Drawstring", length: "Full Length", fabric: "Cotton Blend", fit: "Jogger Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
-    {
-        id: 24,
-        name: "Classic Chino Pants",
-        category: "Essential Bottoms",
-        price: 2600,
-        stock: 10,
-        rating: 4.3,
-        image: "assets/bottom-5.png",
-        description: "Classic chino pants for a smart casual look. Versatile and comfortable for any occasion.",
-        details: { color: "Navy", pattern: "Solid", waist: "Belt Loops", length: "Full Length", fabric: "Cotton Twill", fit: "Regular Fit", occasion: "Smart Casual", care: "Machine Wash" }
-    },
-    {
-        id: 25,
-        name: "Ripped Skinny Jeans",
-        category: "Essential Bottoms",
-        price: 3000,
-        stock: 5,
-        rating: 4.2,
-        image: "assets/bottom-6.png",
-        description: "Trendy ripped skinny jeans with distressed details. Edgy streetwear essential.",
-        details: { color: "Light Blue Wash", pattern: "Distressed", waist: "Button Fly", length: "Full Length", fabric: "Denim with Stretch", fit: "Skinny Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
-    {
-        id: 26,
-        name: "Cargo Jogger Pants",
-        category: "Essential Bottoms",
-        price: 2800,
-        stock: 7,
-        rating: 4.4,
-        image: "assets/bottom-7.png",
-        description: "Cargo jogger pants with multiple pockets. Comfortable and stylish for everyday wear.",
-        details: { color: "Black", pattern: "Solid", waist: "Elastic with Drawstring", length: "Full Length", fabric: "Cotton Blend", fit: "Jogger Fit", occasion: "Streetwear / Casual", care: "Machine Wash" }
-    },
-    {
-        id: 27,
-        name: "Straight Leg Denim Jeans",
-        category: "Essential Bottoms",
-        price: 2600,
-        stock: 11,
-        rating: 4.5,
-        image: "assets/bottom-8.png",
-        description: "Classic straight leg denim jeans. Timeless style with a perfect fit.",
-        details: { color: "Dark Blue Wash", pattern: "Solid", waist: "Button Fly", length: "Full Length", fabric: "Denim", fit: "Straight Fit", occasion: "Casual / Daily Wear", care: "Machine Wash" }
-    },
-    {
-        id: 28,
-        name: "Tech Fleece Joggers",
-        category: "Essential Bottoms",
-        price: 3400,
-        stock: 6,
-        rating: 4.6,
-        image: "assets/bottom-9.png",
-        description: "Premium tech fleece joggers for ultimate comfort. Perfect for athleisure and streetwear.",
-        details: { color: "Black", pattern: "Solid", waist: "Elastic with Drawstring", length: "Full Length", fabric: "Tech Fleece", fit: "Relaxed Fit", occasion: "Athleisure / Streetwear", care: "Machine Wash Cold" }
-    },
-    {
-        id: 29,
-        name: "Pleated Cargo Pants",
-        category: "Essential Bottoms",
-        price: 3300,
-        stock: 5,
-        rating: 4.3,
-        image: "assets/bottom-10.png",
-        description: "Pleated cargo pants with a modern silhouette. Streetwear meets sophistication.",
-        details: { color: "Sage Green", pattern: "Solid", waist: "Belt Loops", length: "Full Length", fabric: "Cotton Blend", fit: "Relaxed Fit", occasion: "Streetwear / Smart Casual", care: "Machine Wash" }
-    },
-    {
-        id: 30,
-        name: "Essential Denim Shorts",
-        category: "Essential Bottoms",
-        price: 1800,
-        stock: 10,
-        rating: 4.1,
-        image: "assets/bottom-11.png",
-        description: "Essential denim shorts for summer. Versatile and comfortable for warm days.",
-        details: { color: "Light Blue Wash", pattern: "Solid", waist: "Button Fly", length: "Short", fabric: "Denim", fit: "Regular Fit", occasion: "Summer / Casual", care: "Machine Wash" }
-    }
+    { id: 24, name: "Light Wash Wide-Leg Jeans", category: "Essential Bottoms", price: 3490, stock: 10, rating: 4.8, image: "assets/bottom-1.png", description: "Premium light wash wide-leg denim jeans crafted from soft heavyweight cotton. A timeless everyday essential.", details: { color: "Light Blue", pattern: "Solid Wash", waist: "Button Closure", length: "Full Length", fabric: "100% Cotton Denim", fit: "Wide Leg", occasion: "Casual / Everyday", care: "Machine Wash" } },
+    { id: 25, name: "Classic Indigo Wide Jeans", category: "Essential Bottoms", price: 3690, stock: 12, rating: 4.8, image: "assets/bottom-2.png", description: "Classic indigo denim with a relaxed wide-leg cut. Designed for all-day comfort.", details: { color: "Dark Indigo", pattern: "Solid Wash", waist: "Button Closure", length: "Full Length", fabric: "Premium Cotton Denim", fit: "Wide Leg", occasion: "Casual / Streetwear", care: "Machine Wash" } },
+    { id: 26, name: "Vintage Fade Baggy Jeans", category: "Essential Bottoms", price: 3890, stock: 8, rating: 4.9, image: "assets/bottom-3.png", description: "Vintage-inspired faded denim featuring a relaxed baggy fit with subtle whiskering.", details: { color: "Vintage Blue", pattern: "Faded Wash", waist: "Button Closure", length: "Full Length", fabric: "Premium Cotton Denim", fit: "Baggy Fit", occasion: "Streetwear / Casual", care: "Machine Wash" } },
+    { id: 27, name: "Black Wide-Leg Denim", category: "Essential Bottoms", price: 3790, stock: 9, rating: 4.8, image: "assets/bottom-4.png", description: "Premium black wide-leg jeans with a washed finish. Clean, versatile, and perfect for minimal everyday styling.", details: { color: "Washed Black", pattern: "Faded Wash", waist: "Button Closure", length: "Full Length", fabric: "100% Cotton Denim", fit: "Wide Leg", occasion: "Casual / Streetwear", care: "Machine Wash" } },
+    { id: 28, name: "Beige Cargo Utility Pants", category: "Essential Bottoms", price: 3290, stock: 11, rating: 4.7, image: "assets/bottom-5.png", description: "Relaxed-fit cargo pants featuring spacious utility pockets and a comfortable elastic waistband.", details: { color: "Beige", pattern: "Solid", waist: "Elastic Waist", length: "Full Length", fabric: "Cotton Twill", fit: "Relaxed Fit", occasion: "Casual / Streetwear", care: "Machine Wash" } },
+    { id: 29, name: "Charcoal Cargo Utility Pants", category: "Essential Bottoms", price: 3290, stock: 10, rating: 4.7, image: "assets/bottom-6.png", description: "Modern charcoal cargo trousers with utility pockets and a clean relaxed silhouette.", details: { color: "Charcoal Grey", pattern: "Solid", waist: "Elastic Waist", length: "Full Length", fabric: "Premium Cotton Twill", fit: "Relaxed Fit", occasion: "Casual / Utility Wear", care: "Machine Wash" } },
+    { id: 30, name: "Brown Cargo Utility Pants", category: "Essential Bottoms", price: 3390, stock: 8, rating: 4.8, image: "assets/bottom-7.png", description: "Earth-tone cargo pants with oversized utility pockets and a relaxed straight-leg fit.", details: { color: "Coffee Brown", pattern: "Solid", waist: "Elastic Waist", length: "Full Length", fabric: "Premium Cotton Twill", fit: "Relaxed Fit", occasion: "Casual / Streetwear", care: "Machine Wash" } },
+    { id: 31, name: "Black Cargo Utility Pants", category: "Essential Bottoms", price: 3390, stock: 10, rating: 4.8, image: "assets/bottom-8.png", description: "Premium black cargo trousers with a modern relaxed cut and spacious utility pockets.", details: { color: "Jet Black", pattern: "Solid", waist: "Elastic Waist", length: "Full Length", fabric: "Premium Cotton Twill", fit: "Relaxed Fit", occasion: "Streetwear / Casual", care: "Machine Wash" } },
+    { id: 32, name: "Classic Pleated Trousers", category: "Essential Bottoms", price: 3590, stock: 9, rating: 4.9, image: "assets/bottom-9.png", description: "Elegant straight-leg pleated trousers tailored for smart casual and formal styling.", details: { color: "Light Grey", pattern: "Solid", waist: "Button Closure", length: "Full Length", fabric: "Premium Suiting Fabric", fit: "Relaxed Straight Fit", occasion: "Formal / Smart Casual", care: "Dry Clean Recommended" } },
+    { id: 33, name: "Navy Pleated Trousers", category: "Essential Bottoms", price: 3590, stock: 8, rating: 4.8, image: "assets/bottom-10.png", description: "Sophisticated navy pleated trousers with a relaxed straight-leg silhouette.", details: { color: "Navy Blue", pattern: "Solid", waist: "Button Closure", length: "Full Length", fabric: "Premium Suiting Fabric", fit: "Relaxed Straight Fit", occasion: "Business Casual / Formal", care: "Dry Clean Recommended" } },
+    { id: 34, name: "Sage Green Pleated Trousers", category: "Essential Bottoms", price: 3690, stock: 7, rating: 4.9, image: "assets/bottom-11.png", description: "Premium sage green pleated trousers featuring a modern tailored fit.", details: { color: "Sage Green", pattern: "Solid", waist: "Button Closure", length: "Full Length", fabric: "Premium Suiting Fabric", fit: "Relaxed Straight Fit", occasion: "Smart Casual / Formal", care: "Dry Clean Recommended" } }
 ];
 
 // ========================================

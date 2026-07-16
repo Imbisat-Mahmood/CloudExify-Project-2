@@ -4,7 +4,6 @@
 // ========================================
 
 // ---------- DOM References ----------
-const productGrid = document.getElementById('productGrid');
 const searchInput = document.getElementById('search');
 const categoryFilter = document.getElementById('categoryFilter');
 const priceFilter = document.getElementById('priceFilter');
@@ -13,7 +12,6 @@ const sortFilter = document.getElementById('sortFilter');
 const countdownEl = document.getElementById('countdown');
 const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
-const cartCount = document.getElementById('cartCount');
 const navCartCount = document.getElementById('navCartCount');
 const wishlistItems = document.getElementById('wishlistItems');
 const wishlistCount = document.getElementById('wishlistCount');
@@ -24,6 +22,12 @@ const toastMessage = document.getElementById('toastMessage');
 const discountCode = document.getElementById('discountCode');
 const applyDiscountBtn = document.getElementById('applyDiscount');
 const discountMessage = document.getElementById('discountMessage');
+
+// Sections that make up the HOME view (hero + drop + featured + both promo
+// banners). These are hidden completely whenever a category or a search is
+// active — the category view below takes over instead.
+const HOME_SECTIONS = ['homeHero', 'drop', 'products', 'setsPromoSection', 'bottomsPromoSection'];
+const categoryViewEl = document.getElementById('categoryView');
 
 // ---------- State ----------
 let cart = [];
@@ -66,7 +70,7 @@ function addToCart(productId) {
 
     cart = getCart();
     const existing = cart.find(item => item.id === productId);
-    
+
     if (existing) {
         if (product.stock > existing.qty) {
             existing.qty++;
@@ -79,10 +83,10 @@ function addToCart(productId) {
     }
 
     product.stock--;
-    
+
     saveCart(cart);
     renderCart();
-    renderProducts(getFilteredProducts());
+    updateView();
     updateCartCount();
     showToast(`${product.name} added to cart!`);
 }
@@ -92,7 +96,7 @@ function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     saveCart(cart);
     renderCart();
-    renderProducts(getFilteredProducts());
+    updateView();
     updateCartCount();
 }
 
@@ -116,10 +120,10 @@ function updateQuantity(productId, change) {
 
     item.qty = newQty;
     if (product) product.stock -= change;
-    
+
     saveCart(cart);
     renderCart();
-    renderProducts(getFilteredProducts());
+    updateView();
     updateCartCount();
 }
 
@@ -188,7 +192,6 @@ function renderCart() {
 function updateCartCount() {
     cart = getCart();
     const count = cart.reduce((sum, item) => sum + item.qty, 0);
-    cartCount.textContent = count;
     navCartCount.textContent = count;
 }
 
@@ -210,7 +213,7 @@ function saveWishlist(wishlistData) {
 function toggleWishlist(productId) {
     wishlist = getWishlist();
     const index = wishlist.indexOf(productId);
-    
+
     if (index > -1) {
         wishlist.splice(index, 1);
         showToast('Removed from wishlist', 'fa-heart');
@@ -218,11 +221,11 @@ function toggleWishlist(productId) {
         wishlist.push(productId);
         showToast('Added to wishlist! ❤️', 'fa-heart');
     }
-    
+
     saveWishlist(wishlist);
     renderWishlist();
     updateWishlistCount();
-    renderProducts(getFilteredProducts());
+    updateView();
 }
 
 function renderWishlist() {
@@ -304,7 +307,7 @@ function startCountdown(targetDate) {
         const h = String(Math.floor((diff % 86400000) / 3600000)).padStart(2, '0');
         const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
         const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
-        
+
         if (days > 0) {
             countdownEl.textContent = `${days}d ${h}:${m}:${s}`;
         } else {
@@ -314,35 +317,14 @@ function startCountdown(targetDate) {
 }
 
 // ========================================
-// PRODUCT RENDERING (FIXED - No Duplicate)
+// PRODUCT RENDERING — one grid per category
 // ========================================
-function getFilteredProducts() {
-    const query = searchInput.value.toLowerCase();
-    const category = categoryFilter.value;
-    const maxPrice = Number(priceFilter.value);
-    const sort = sortFilter.value;
+function renderProducts(products, gridId) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
 
-    let filtered = PRODUCTS.filter(p => {
-        const matchesSearch = p.name.toLowerCase().includes(query);
-        const matchesCategory = category === 'all' || p.category === category;
-        const matchesPrice = p.price <= maxPrice;
-        return matchesSearch && matchesCategory && matchesPrice;
-    });
-
-    if (sort === 'price-low') {
-        filtered.sort((a, b) => a.price - b.price);
-    } else if (sort === 'price-high') {
-        filtered.sort((a, b) => b.price - a.price);
-    } else if (sort === 'rating') {
-        filtered.sort((a, b) => b.rating - a.rating);
-    }
-
-    return filtered;
-}
-
-function renderProducts(products) {
     if (products.length === 0) {
-        productGrid.innerHTML = `
+        grid.innerHTML = `
             <div class="col-12 text-center py-5">
                 <i class="fas fa-search fa-3x mb-3" style="color: rgba(0,0,0,0.1);" aria-hidden="true"></i>
                 <h5>No products found</h5>
@@ -355,22 +337,23 @@ function renderProducts(products) {
     wishlist = getWishlist();
 
     let html = '';
-    products.forEach(p => {
+    products.forEach((p, index) => {
         const soldOut = p.stock === 0;
         const lowStock = p.stock <= 3 && !soldOut;
         const isWishlisted = wishlist.includes(p.id);
         const stockText = soldOut ? 'Sold Out' : `Only ${p.stock} left`;
+        const delay = (index % 8) * 0.06;
 
         html += `
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="product-card">
+                <div class="product-card" style="animation-delay: ${delay}s;">
                     ${soldOut ? '<div class="sold-out-badge">Sold Out</div>' : ''}
                     <button class="wishlist-btn" onclick="toggleWishlist(${p.id})" aria-label="${isWishlisted ? 'Remove from' : 'Add to'} wishlist">
                         <i class="fa${isWishlisted ? 's' : 'r'} fa-heart ${isWishlisted ? 'active' : ''}" aria-hidden="true"></i>
                     </button>
-                    <img src="${p.image}" 
-                         class="card-img-top" 
-                         alt="${p.name} — KADET Streetwear" 
+                    <img src="${p.image}"
+                         class="card-img-top"
+                         alt="${p.name} — KADET Streetwear"
                          loading="lazy"
                          decoding="async"
                          width="400"
@@ -395,10 +378,120 @@ function renderProducts(products) {
         `;
     });
 
-    productGrid.innerHTML = html;
+    grid.innerHTML = html;
 }
-                   
-  
+
+// ========================================
+// FEATURED PRODUCTS — curated row shown on the home view only
+// (never the full catalog, so there's still something new to find
+// once you go into a category)
+// ========================================
+
+// A single, unified card style — no white box, no border. Just a clean,
+// full-bleed cropped image with the caption underneath. Real product
+// photos and lifestyle shots (model-2 / model-3) are rendered identically;
+// an optional imageOverride lets a lifestyle shot stand in for a real
+// product's own photo while price/name/click-through stay tied to the
+// real catalog item.
+function focusProductCardHtml(p, imageOverride, altOverride) {
+    if (!p) return '';
+    const src = imageOverride || p.image;
+    const alt = altOverride || p.name;
+    return `
+        <div class="focus-block focus-product-card" onclick="openProductModal(${p.id})">
+            <img src="${src}" alt="${alt}" class="focus-product-img" loading="lazy" decoding="async">
+            <div class="focus-product-info">
+                <h3>${p.name}</h3>
+                <span class="focus-product-meta">${(p.details && p.details.fit) || 'Regular Fit'} | Men</span>
+                <div class="focus-product-price">Rs. ${p.price.toLocaleString()}</div>
+            </div>
+        </div>
+    `;
+}
+
+function renderFeatured() {
+    // Signature Collection — "Categories in Focus" — 4 cards, exactly
+    // matching the reference layout: two lifestyle shots (model-2 / model-3)
+    // standing in for real products, and two real product photos.
+    const focusRow = document.getElementById('focusProductsRow');
+    if (focusRow) {
+        const skyBlueCasual = PRODUCTS.find(p => p.id === 3);
+        const BeigeRibbedKnitPolo= PRODUCTS.find(p => p.id === 8);
+        const sageGreenPolo = PRODUCTS.find(p => p.id === 31);
+        const OliveGreenStripedResortShirt= PRODUCTS.find(p => p.id === 10);
+
+        focusRow.innerHTML = `
+            ${focusProductCardHtml(skyBlueCasual, 'assets/model-2.png', 'KADET Signature Tops — styled look')}
+            ${focusProductCardHtml(BeigeRibbedKnitPolo)}
+            ${focusProductCardHtml(sageGreenPolo, 'assets/model-3.png', 'KADET Signature Tops — styled look')}
+            ${focusProductCardHtml(OliveGreenStripedResortShirt)}
+        `;
+    }
+
+    // Under the Co-Ord (banner-5) promo — first 4 Matching Sets
+    const sets = PRODUCTS.filter(p => p.category === 'Matching Sets').slice(0, 4);
+    renderProducts(sets, 'productGrid-sets-home');
+
+    // Under the Bottom (banner-6) promo — first 4 Essential Bottoms
+    const bottoms = PRODUCTS.filter(p => p.category === 'Essential Bottoms').slice(0, 4);
+    renderProducts(bottoms, 'productGrid-bottoms-home');
+}
+
+// ========================================
+// VIEW STATE — Home view vs. Category / Search view
+// Home = hero + drop + featured + both promo banners, no full catalog.
+// Category/Search = filters bar + a single results grid, banners hidden.
+// ========================================
+function updateView() {
+    const query = searchInput.value.trim().toLowerCase();
+    const category = categoryFilter.value;
+    const isHome = category === 'all' && query === '';
+
+    HOME_SECTIONS.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('d-none', !isHome);
+    });
+    if (categoryViewEl) categoryViewEl.classList.toggle('d-none', isHome);
+
+    if (isHome) {
+        renderFeatured();
+        initRevealAnimations();
+        return;
+    }
+
+    const maxPrice = Number(priceFilter.value);
+    const sort = sortFilter.value;
+
+    let list = PRODUCTS.filter(p => {
+        const matchesCategory = category === 'all' || p.category === category;
+        const matchesSearch = p.name.toLowerCase().includes(query);
+        const matchesPrice = p.price <= maxPrice;
+        return matchesCategory && matchesSearch && matchesPrice;
+    });
+
+    if (sort === 'price-low') {
+        list.sort((a, b) => a.price - b.price);
+    } else if (sort === 'price-high') {
+        list.sort((a, b) => b.price - a.price);
+    } else if (sort === 'rating') {
+        list.sort((a, b) => b.rating - a.rating);
+    }
+
+    renderProducts(list, 'productGrid-category');
+
+    const titleEl = document.getElementById('categoryViewTitle');
+    if (titleEl) {
+        if (query && category === 'all') {
+            titleEl.textContent = `Search Results for "${searchInput.value.trim()}"`;
+        } else if (category !== 'all') {
+            titleEl.textContent = category;
+        } else {
+            titleEl.textContent = 'All Products';
+        }
+    }
+
+    initRevealAnimations();
+}
 
 // ========================================
 // PRODUCT MODAL
@@ -479,13 +572,13 @@ function updateStockInfo(product) {
 // ========================================
 function updateSizeChartForProduct(product) {
     if (!product) return;
-    
+
     const chartData = getSizeChart(product.category);
     if (!chartData) return;
-    
+
     const sizeSelect = document.getElementById('productSize');
     sizeSelect.innerHTML = '<option value="">Select Size</option>';
-    
+
     chartData.sizes.forEach(size => {
         const option = document.createElement('option');
         option.value = size.label;
@@ -501,33 +594,33 @@ function updateSizeChartForProduct(product) {
 function openSizeChart() {
     const product = PRODUCTS.find(p => p.id === currentProductId);
     if (!product) return;
-    
+
     const chartData = getSizeChart(product.category);
     if (!chartData) return;
-    
+
     document.getElementById('sizeChartTitle').textContent = chartData.title || 'KADET Size Guide';
-    
+
     let tableHtml = `
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                     <tr><th>Size</th>
     `;
-    
+
     const isTops = product.category.includes("Signature Tops");
     const isSets = product.category.includes("Matching Sets");
     const isBottoms = product.category.includes("Essential Bottoms");
-    
+
     if (isTops || isSets) {
         tableHtml += `<th>Chest (in)</th><th>Waist (in)</th><th>Height</th><th>Age</th>`;
     } else if (isBottoms) {
         tableHtml += `<th>Waist (in)</th><th>Hip (in)</th><th>Inseam (in)</th><th>Height</th><th>Age</th>`;
     }
     tableHtml += `</tr></thead><tbody>`;
-    
+
     chartData.sizes.forEach(size => {
         tableHtml += `<tr><td><strong>${size.label}</strong></td>`;
-        
+
         if (isTops || isSets) {
             tableHtml += `
                 <td>${size.chest || '-'}</td>
@@ -546,10 +639,10 @@ function openSizeChart() {
         }
         tableHtml += `</tr>`;
     });
-    
+
     tableHtml += `</tbody></table></div>`;
     document.getElementById('sizeChartContent').innerHTML = tableHtml;
-    
+
     let guideHtml = '';
     if (chartData.measurement_guide) {
         Object.entries(chartData.measurement_guide).forEach(([key, value]) => {
@@ -558,7 +651,7 @@ function openSizeChart() {
         });
     }
     document.getElementById('measurementGuide').innerHTML = guideHtml || '<p class="text-muted">No measurement guide available.</p>';
-    
+
     new bootstrap.Modal(document.getElementById('sizeChartModal')).show();
 }
 
@@ -598,17 +691,17 @@ document.getElementById('modalAddToCart').addEventListener('click', function() {
         return;
     }
     document.getElementById('productSize').classList.remove('is-invalid');
-    
+
     const product = PRODUCTS.find(p => p.id === currentProductId);
     if (!product) return;
     if (product.stock < selectedQty) {
         showToast('Not enough stock!', 'fa-exclamation-circle');
         return;
     }
-    
+
     cart = getCart();
     const existing = cart.find(item => item.id === currentProductId && item.size === size);
-    
+
     if (existing) {
         if (product.stock >= existing.qty + selectedQty) {
             existing.qty += selectedQty;
@@ -619,14 +712,14 @@ document.getElementById('modalAddToCart').addEventListener('click', function() {
     } else {
         cart.push({ id: currentProductId, qty: selectedQty, size: size });
     }
-    
+
     product.stock -= selectedQty;
-    
+
     saveCart(cart);
     renderCart();
-    renderProducts(getFilteredProducts());
+    updateView();
     updateCartCount();
-    
+
     bootstrap.Modal.getInstance(document.getElementById('productModal')).hide();
     showToast(`${product.name} (${size}) added to cart!`);
 });
@@ -667,67 +760,115 @@ checkoutForm.addEventListener('submit', function(e) {
 });
 
 // ========================================
-// FILTERS
+// FILTER EVENT LISTENERS
 // ========================================
-function applyFilters() {
-    const filtered = getFilteredProducts();
-    renderProducts(filtered);
-}
-
-searchInput.addEventListener('input', applyFilters);
-categoryFilter.addEventListener('change', applyFilters);
+searchInput.addEventListener('input', updateView);
+categoryFilter.addEventListener('change', updateView);
 priceFilter.addEventListener('input', function() {
     priceLabel.textContent = `Rs. ${Number(this.value).toLocaleString()}`;
-    applyFilters();
+    updateView();
 });
-sortFilter.addEventListener('change', applyFilters);
+sortFilter.addEventListener('change', updateView);
 
 // ========================================
 // DARK MODE TOGGLE
 // ========================================
 let darkMode = false;
 
+function setDarkModeIcon(btn, isDark) {
+    btn.innerHTML = isDark
+        ? '<i class="fas fa-sun" aria-hidden="true"></i>'
+        : '<i class="fas fa-moon" aria-hidden="true"></i>';
+}
+
+const darkModeToggle = document.getElementById('darkModeToggle');
 const savedTheme = localStorage.getItem('kadet_theme');
 if (savedTheme === 'dark') {
     darkMode = true;
     document.documentElement.setAttribute('data-bs-theme', 'dark');
-    document.getElementById('darkModeToggle').innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
+    setDarkModeIcon(darkModeToggle, true);
 }
 
-document.getElementById('darkModeToggle').addEventListener('click', function(e) {
+darkModeToggle.addEventListener('click', function(e) {
     e.preventDefault();
     darkMode = !darkMode;
     document.documentElement.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
-    
-    if (darkMode) {
-        this.innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
-    } else {
-        this.innerHTML = '<i class="fas fa-moon me-1" aria-hidden="true"></i> <span id="darkModeLabel">Dark</span>';
-    }
-    
+    setDarkModeIcon(this, darkMode);
     localStorage.setItem('kadet_theme', darkMode ? 'dark' : 'light');
 });
 
 // ========================================
-// HOME LINK - Click logo to return to top
+// HOME LINK / HOME ICON
+// Resets any active category/search AND scrolls to top — this is what
+// makes it actually work when you're deep inside a category view,
+// not just a scroll with nothing visible to scroll back to.
 // ========================================
-document.getElementById('homeLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+function goHome(e) {
+    if (e) e.preventDefault();
+    filterCategory('all');
+}
+
+document.getElementById('homeLink').addEventListener('click', goHome);
+document.getElementById('homeIconBtn').addEventListener('click', goHome);
+document.getElementById('footerHomeLink').addEventListener('click', goHome);
+
+// ========================================
+// NAV SEARCH TOGGLE (mobile)
+// ========================================
+const navSearchBar = document.getElementById('navSearchBar');
+const searchToggle = document.getElementById('searchToggle');
+const searchClose = document.getElementById('searchClose');
+
+searchToggle.addEventListener('click', function() {
+    navSearchBar.classList.add('active');
+    searchInput.focus();
 });
 
-document.getElementById('footerHomeLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+searchClose.addEventListener('click', function() {
+    navSearchBar.classList.remove('active');
 });
 
 // ========================================
-// FILTER BY CATEGORY (for banner CTA buttons)
+// NAVBAR SCROLL SHADOW
+// ========================================
+const mainNavbar = document.getElementById('mainNavbar');
+window.addEventListener('scroll', function() {
+    if (window.scrollY > 40) {
+        mainNavbar.classList.add('nav-scrolled');
+    } else {
+        mainNavbar.classList.remove('nav-scrolled');
+    }
+}, { passive: true });
+
+// ========================================
+// SCROLL REVEAL ANIMATIONS
+// ========================================
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+function initRevealAnimations() {
+    document.querySelectorAll('.reveal:not(.revealed)').forEach(el => revealObserver.observe(el));
+}
+
+// ========================================
+// FILTER BY CATEGORY (for banner / promo CTA buttons)
 // ========================================
 function filterCategory(category) {
     categoryFilter.value = category;
-    applyFilters();
-    document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+    searchInput.value = '';
+    updateView();
+
+    if (category === 'all') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (categoryViewEl) {
+        categoryViewEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 // ========================================
@@ -741,17 +882,12 @@ window.addEventListener('storage', function(e) {
     if (e.key === 'kadet_wishlist') {
         renderWishlist();
         updateWishlistCount();
-        renderProducts(getFilteredProducts());
+        updateView();
     }
     if (e.key === 'kadet_theme') {
         const theme = e.newValue === 'dark';
         document.documentElement.setAttribute('data-bs-theme', theme ? 'dark' : 'light');
-        const toggle = document.getElementById('darkModeToggle');
-        if (theme) {
-            toggle.innerHTML = '<i class="fas fa-sun me-1" aria-hidden="true"></i> <span id="darkModeLabel">Light</span>';
-        } else {
-            toggle.innerHTML = '<i class="fas fa-moon me-1" aria-hidden="true"></i> <span id="darkModeLabel">Dark</span>';
-        }
+        setDarkModeIcon(darkModeToggle, theme);
     }
 });
 
@@ -778,14 +914,14 @@ function goToSlide(index) {
     document.querySelectorAll('.hero-slide').forEach(slide => {
         slide.classList.remove('active');
     });
-    
+
     document.querySelectorAll('.slider-dot').forEach(dot => {
         dot.classList.remove('active');
     });
-    
+
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('.slider-dot');
-    
+
     if (index >= totalSlides) {
         currentSlide = 0;
     } else if (index < 0) {
@@ -793,7 +929,7 @@ function goToSlide(index) {
     } else {
         currentSlide = index;
     }
-    
+
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
 }
@@ -868,15 +1004,16 @@ function init() {
     renderWishlist();
     updateWishlistCount();
 
-    renderProducts(PRODUCTS);
-    startCountdown('2026-07-15T18:00:00');
+    updateView();
+    startCountdown('2026-07-30T20:00:00');
     priceLabel.textContent = `Rs. 5,000`;
-    
+
     initSlider();
+    initRevealAnimations();
 }
 
 init();
 
 console.log('✅ KADET initialized successfully!');
-console.log('🚀 All features loaded including ALL Bonus Challenges + Hero Slider!');
+console.log('🚀 Premium navbar, promo banners, and scroll animations loaded!');
 console.log(`📦 Total Products: ${PRODUCTS.length}`);
